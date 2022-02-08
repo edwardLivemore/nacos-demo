@@ -9,5 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class OrderRequest {
     private String productId;
+    private String productName;
     private Integer price;
 }

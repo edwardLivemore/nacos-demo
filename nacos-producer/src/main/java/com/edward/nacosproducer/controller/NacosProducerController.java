@@ -20,7 +20,7 @@ public class NacosProducerController {
     @Autowired
     private ProducerService producerService;
 
-    @Value("${enableOrder:true}")
+    @Value("${enableOrder}")
     private Boolean enableOrder;
 
     @PostMapping
