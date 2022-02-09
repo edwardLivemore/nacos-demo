@@ -33,3 +33,11 @@ spring:
         register-enabled: true
         username: nacos
         password: nacos
+
+  # 调用链路
+  sleuth:
+    sampler:
+      # 采样率: 100%
+      probability: 1.0
+      # 采样数字: 每秒最多对1000个 Request 进行采样
+      rate: 1000
