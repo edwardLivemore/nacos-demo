@@ -61,3 +61,13 @@ spring:
       probability: 1.0
       # 采样数字: 每秒最多对1000个 Request 进行采样
       rate: 1000
+
+  # zipkin
+  zipkin:
+    sender:
+      type: kafka
+    kafka:
+      topic: zipkin
+
+  kafka:
+    bootstrap-servers: 127.0.0.1:9001
