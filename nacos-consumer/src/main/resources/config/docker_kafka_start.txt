@@ -1,0 +1,14 @@
+### docker
+docker run -d --name zk_single --publish 2181:2181  -t zookeeper:3.4.9
+
+docker run -d --name kafka_single --publish 9001:9001 --link zk_single   -e KAFKA_LOG_DIRS=/tmp/kafka/kafka-logs1 -e KAFKA_ZOOKEEPER_CONNECT=zk_single:2181  -e KAFKA_ADVERTISED_HOST_NAME=127.0.0.1  -e KAFKA_ADVERTISED_PORT=9001  -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9001  -e KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9001  -e ALLOW_PLAINTEXT_LISTENER=yes  -t bitnami/kafka
+docker run -d --name kafka_single -p 9001:9001 --link zk_single -e KAFKA_ZOOKEEPER_CONNECT=zk_single:2181 -e KAFKA_ADVERTISED_HOST_NAME=127.0.0.1 -e KAFKA_ADVERTISED_PORT=9001 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9001  -e KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9001 -e ALLOW_PLAINTEXT_LISTENER=yes  -t bitnami/kafka
+
+
+
+### Windows
+bin\windows\zookeeper-server-start.bat config\zookeeper.properties
+bin\windows\kafka-server-start.bat config\server.properties
+bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+bin\windows\kafka-topics.bat --list --zookeeper localhost:2181 
+bin\windows\kafka-console-consumer.bat --bootstrap-server 127.0.0.1:9092 --topic test --from-beginning

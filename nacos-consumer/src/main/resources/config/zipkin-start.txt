@@ -1,0 +1,4 @@
+java -jar zipkin-server-2.23.9-exec.jar --STORAGE_TYPE=mysql --MYSQL_HOST=127.0.0.1 --MYSQL_TCP_PORT=3306 --MYSQL_USER=root  --MYSQL_DB=zipkin --KAFKA_BOOTSTRAP_SERVERS=localhost:9092
+
+###java -server -jar zipkin-server-2.23.9-exec.jar --zipkin.collector.kafka.zookeeper=127.0.0.1:2181
+java -server -jar zipkin-server-2.23.9-exec.jar --KAFKA_BOOTSTRAP_SERVERS=localhost:9092

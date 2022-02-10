@@ -50,4 +50,4 @@ spring:
       topic: zipkin
 
   kafka:
-    bootstrap-servers: 127.0.0.1:9001
+    bootstrap-servers: 127.0.0.1:9092
