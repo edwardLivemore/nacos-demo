@@ -22,6 +22,7 @@
         <module>nacos-common</module>
         <module>nacos-producer</module>
         <module>nacos-consumer</module>
+        <module>nacos-gateway</module>
     </modules>
 
     <dependencies>
