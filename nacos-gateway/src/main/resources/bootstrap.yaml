@@ -1,11 +1,9 @@
+server:
+  port: 8083
+
 spring:
   application:
     name: gateway
-
-  redis:
-    host: localhost
-    port: 6379
-    username: root
 
   cloud:
     nacos:
@@ -24,7 +22,7 @@ spring:
         server-addr: http://nacos.chinadep.com
         # 命名空间
         namespace: 83332572-528e-4b21-ad3f-fde0fcc9ebee
-        #        namespace: dev
+        # namespace: dev
         username: nacos
         password: nacos
         group: DEFAULT_GROUP
@@ -40,27 +38,27 @@ spring:
         refresh-enabled: true
         file-extension: yml
 
-    gateway:
-      discovery:
-        locator:
-          # 创建默认路由，以"/服务名称/接口地址"的格式规则进行转发
-          enabled: true
-          # Nacos服务名称本来就是小写，但Eureka默认大写
-          lower-case-service-id: true
-      # 跨域配置
-      globalcors:
-        cors-configurations:
-          '[/**]':
-            # 授信地址列表
-            allowed-origins:
-              - "http://localhost:10000"
-            # cookie, authorization认证信息
-            expose-headers: "*"
-            allowed-methods: "*"
-            allow-credentials: true
-            allowed-headers: "*"
-            # 浏览器缓存时间
-            max-age: 1000
+#    gateway:
+#      discovery:
+#        locator:
+#          # 创建默认路由，以"/服务名称/接口地址"的格式规则进行转发
+#          enabled: true
+#          # Nacos服务名称本来就是小写，但Eureka默认大写
+#          lower-case-service-id: true
+#      # 跨域配置
+#      globalcors:
+#        cors-configurations:
+#          '[/**]':
+#            # 授信地址列表
+#            allowed-origins:
+#              - "http://localhost:10000"
+#            # cookie, authorization认证信息
+#            expose-headers: "*"
+#            allowed-methods: "*"
+#            allow-credentials: true
+#            allowed-headers: "*"
+#            # 浏览器缓存时间
+#            max-age: 1000
   # 调用链路
   sleuth:
     sampler:
