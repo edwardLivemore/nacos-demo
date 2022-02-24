@@ -10,7 +10,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.UUID;
 
 @RefreshScope
@@ -20,7 +25,7 @@ import java.util.UUID;
 public class ConsumerController {
 
     @PostMapping("order")
-    CommonResult<Void> createOrder(@RequestBody OrderRequest request) {
+    CommonResult<Void> createOrder(@RequestBody OrderRequest request, HttpServletRequest req, HttpServletResponse response) {
         Order order = new Order();
         order.setId(UUID.randomUUID().toString().replaceAll("-", ""));
         order.setConsumerId(UUID.randomUUID().toString().replaceAll("-", ""));
@@ -29,6 +34,14 @@ public class ConsumerController {
         order.setPrice(request.getPrice());
         order.setOrderTime(LocalDateTime.now());
         log.info("收到商品信息, 正在创建订单: {}", order);
+        Enumeration<String> headers = req.getHeaderNames();
+        while(headers.hasMoreElements()){
+            String headerName = headers.nextElement();
+            log.info("request header name : {}, value: {}", headerName, req.getHeader(headerName));
+        }
+        for (String header : response.getHeaderNames()) {
+            log.info("response header name : {}, value : {}", header, response.getHeader(header));
+        }
         return CommonResult.success(null);
     }
 }

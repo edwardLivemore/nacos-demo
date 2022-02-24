@@ -6,6 +6,13 @@ spring:
     name: producer-server
 
   cloud:
+    sentinel:
+      transport:
+        # sentinel api端口，默认8719
+        port: 8719
+        # dashboard地址
+        dashboard: localhost:8080
+
     nacos:
       discovery:
         # Nacos的服务注册地址，可以配置多个，逗号分隔 server-addr: localhost:8848
